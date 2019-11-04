@@ -24,14 +24,16 @@ const NavBar = props => {
     const [affixed, setAffixed] = useState(false);
 
   useEffect(() => {
-    axios.get(`/api/managers/${getID()}`).then(res => {
-      setUser(res.data);
-    }).catch(err => {
-      setNav('/');
-      if(err.response && err.response.status === 503) err503();
-      else if(err.response && err.response.status === 401) err401();
-      else errGeneral();
-    });
+    if(getID()) {
+      axios.get(`/api/users/${getID()}`).then(res => {
+        setUser(res.data);
+      }).catch(err => {
+        setNav('/');
+        if(err.response && err.response.status === 503) err503();
+        else if(err.response && err.response.status === 401) err401();
+        else errGeneral();
+      });
+    }
   }, []);
 
   const signout = () => {
@@ -56,107 +58,82 @@ const NavBar = props => {
             </Link>
 
             <Menu className = "header-menu" selectedKeys = {[props.page]} mode = "horizontal">
-              <Menu.Item key = "home" style = {{ paddingRight: 0, paddingLeft: 40 }}>
-                <Link to = "/home">
-                  <Icon type = "home" style = {{ margin: 0 }} /> &nbsp; Home
+              { user.name &&
+                <Menu.Item key = "myFolder" style = {{ paddingRight: 0, paddingLeft: 40 }}>
+                  <Link to = "/myFolder">
+                    <Icon type = "home" style = {{ margin: 0 }} /> &nbsp; My Folders
+                  </Link>
+                </Menu.Item>
+              }
+
+              <Menu.Item key = "globalFolder" style = {{ paddingRight: 0 }}>
+                <Link to = "/globalFolder">
+                  <Icon type = "global" style = {{ margin: 0 }} /> &nbsp; Global Folders
                 </Link>
               </Menu.Item>
 
-              <Menu.Item key = "calendario" style = {{ paddingRight: 0 }}>
-                <Link to = "/calendario"> Calendário </Link>
-              </Menu.Item>
-              
-              <Menu.SubMenu title = "Gerenciamento">
-                <Menu.ItemGroup title = "Usuários">
-                  <Menu.Item key = "app">
-                    <Link to = "/usuarios-app">
-                      <Icon type = "tablet" />
-                      <span> Aplicativo </span>
-                    </Link>
-                  </Menu.Item>
-
-                  <Menu.Item key = "web">
-                    <Link to = "/usuarios-web">
-                      <Icon type = "laptop" />
-                      <span> Web </span>
-                    </Link>
-                  </Menu.Item>
-                </Menu.ItemGroup>
-
-                <Menu.Item key = "cartilha">
-                  <Link to = "/cartilha">
-                    <Icon type = "question-circle" />
-                    <span> Cartilha </span>
+              { user.name &&
+                <Menu.Item key = "shareWithMe" style = {{ paddingRight: 0 }}>
+                  <Link to = "/shareWithMe">
+                    <Icon type = "deployment-unit" style = {{ margin: 0 }} /> &nbsp; Share with me
                   </Link>
                 </Menu.Item>
-
-                <Menu.Item key = "formulario">
-                  <Link to = "/formulario">
-                    <Icon type = "form" />
-                    <span> Formulário </span>
-                  </Link>
-                </Menu.Item>
-
-                <Menu.Item key = "jogos">
-                  <Link to = "/jogos">
-                    <Icon type = "trophy" />
-                    <span> Jogos </span>
-                  </Link>
-                </Menu.Item>
-              </Menu.SubMenu>
+              }
             </Menu>
 
             <Col className = "header-outer-options">
-              <Popover
-                overlayClassName = "header-popover-card"
-                placement = "bottomRight"
-                content = {(
-                  <Card style = {{ width: 350 }} bordered = {false}>
-                    <Card.Meta
-                      className = "header-card-info"
-                      style = {{ padding: '2rem 1rem', background: '#F3F5F9', margin: 0 }}
-                      avatar = {<Avatar shape = "square" size = {60} style = {{ filter: 'grayscale(50%)' }} src = { user.image } />}
-                      title = {<Text strong> { user.name } </Text>}
-                      description = {<Text type = "secondary" ellipsis style = {{ width: '100%' }}> { user.email } </Text>}
-                    />
+              { user.name &&
+                <Popover
+                  overlayClassName = "header-popover-card"
+                  placement = "bottomRight"
+                  content = {(
+                    <Card style = {{ width: 350 }} bordered = {false}>
+                      <Card.Meta
+                        className = "header-card-info"
+                        style = {{ padding: '2rem 1rem', background: '#F3F5F9', margin: 0 }}
+                        avatar = {<Avatar shape = "square" size = {60} style = {{ filter: 'grayscale(50%)' }} src = { user.image } />}
+                        title = {<Text strong> { user.name } </Text>}
+                        description = {<Text type = "secondary" ellipsis style = {{ width: '100%' }}> { user.email } </Text>}
+                      />
 
-                    <Menu className = "header-card-list-options">
-                      <Menu.Item key = "perfil">
-                        <Link to = "/edit/profile" replace>
-                          <Card.Meta
-                            avatar = {<Icon style = {{ fontSize: 20 }} type = "idcard" />}
-                            title = {<Text style = {{ fontSize: 13 }}> Meu Perfil </Text>}
-                            description = {<Text type = "secondary" ellipsis style = {{ width: '100%', fontSize: 11 }}> Edite as suas Informações de perfil e sua senha. </Text>}
-                          />
-                          <Icon className = "header-card-right-icon" type = "right" />
-                        </Link>
-                      </Menu.Item>
+                      <Menu className = "header-card-list-options">
+                        <Menu.Item key = "perfil">
+                          <Link to = "/edit/profile" replace>
+                            <Card.Meta
+                              avatar = {<Icon style = {{ fontSize: 20 }} type = "idcard" />}
+                              title = {<Text style = {{ fontSize: 13 }}> Meu Perfil </Text>}
+                              description = {<Text type = "secondary" ellipsis style = {{ width: '100%', fontSize: 11 }}> Edite as suas Informações de perfil e sua senha. </Text>}
+                            />
+                            <Icon className = "header-card-right-icon" type = "right" />
+                          </Link>
+                        </Menu.Item>
 
-                      <Menu.Divider />
+                        <Menu.Divider />
 
-                      <Menu.Item key = "configuracoes">
-                        <Link to = "/configuracoes" replace>
-                          <Card.Meta
-                            avatar = {<Icon style = {{ fontSize: 20 }} type = "setting" />}
-                            title = {<Text style = {{ fontSize: 13 }}> Configurações </Text>}
-                            description = {<Text type = "secondary" ellipsis style = {{ width: '100%', fontSize: 11 }}> Gerencie categorias e configure informações do sistema. </Text>}
-                          />
-                          <Icon className = "header-card-right-icon" type = "right" />
-                        </Link>
-                      </Menu.Item>
+                        <Menu.Item key = "configuracoes">
+                          <Link to = "/configuracoes" replace>
+                            <Card.Meta
+                              avatar = {<Icon style = {{ fontSize: 20 }} type = "setting" />}
+                              title = {<Text style = {{ fontSize: 13 }}> Configurações </Text>}
+                              description = {<Text type = "secondary" ellipsis style = {{ width: '100%', fontSize: 11 }}> Gerencie categorias e configure informações do sistema. </Text>}
+                            />
+                            <Icon className = "header-card-right-icon" type = "right" />
+                          </Link>
+                        </Menu.Item>
 
-                      <Menu.Divider />
-                    </Menu>
+                        <Menu.Divider />
+                      </Menu>
 
-                    <Button type = "danger" size = "small" icon = "frown" style = {{ margin: 10 }} onClick = { signout }> Sair </Button>
-                  </Card>
-                )}
-              >
-                <span style = {{ marginLeft: 10, fontSize: 13, cursor: 'pointer' }}>
-                  <Text> Olá, </Text> <Text className = "username" strong> { user.name.replace(/ .*/, '') } </Text>
-                  <Avatar shape = "square" size = { affixed ? 40 : 45 } style = {{ marginLeft: 4 }} src = { user.image } />
-                </span>
-              </Popover>
+                      <Button type = "danger" size = "small" icon = "frown" style = {{ margin: 10 }} onClick = { signout }> Sair </Button>
+                    </Card>
+                  )}
+                >
+                  <span style = {{ marginLeft: 10, fontSize: 13, cursor: 'pointer' }}>
+                    <Text> Olá, </Text> <Text className = "username" strong> { user.name.replace(/ .*/, '') } </Text>
+                    <Avatar shape = "square" size = { affixed ? 40 : 45 } style = {{ marginLeft: 4 }} src = { user.image } />
+                  </span>
+                </Popover>
+              }
             </Col>
           </Row>
         </Header>
