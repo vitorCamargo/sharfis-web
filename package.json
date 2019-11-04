@@ -23,7 +23,7 @@
     "test": "CI=true react-app-rewired test --env=jsdom",
     "test:coverage": "npm test -- --coverage"
   },
-  "homepage": "https://vitorcamargo.github.io/sharfis-web/",
+  "homepage": "https://sharfis.netlify.com",
   "proxy": "https://sharfis.herokuapp.com/",
   "root": "build/",
   "routes": {
