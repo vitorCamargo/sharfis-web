@@ -23,8 +23,8 @@
     "test": "CI=true react-app-rewired test --env=jsdom",
     "test:coverage": "npm test -- --coverage"
   },
-  "homepage": "https://software-engineering-utfpr.github.io/web/",
-  "proxy": "https://rio-campo-limpo.herokuapp.com/",
+  "homepage": "https://vitorcamargo.github.io/sharfis-web/",
+  "proxy": "https://sharfis.herokuapp.com/",
   "root": "build/",
   "routes": {
     "/**": "index.html"
