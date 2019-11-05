@@ -5,7 +5,11 @@ import { ConfigProvider } from 'antd';
 import ptBR from 'antd/lib/locale-provider/pt_BR';
 import moment from 'moment';
 
-import Home from './pages/home';
+import MyFolder from './pages/myFolder';
+import GlobalFolder from './pages/globalFolder';
+import ShareFolder from './pages/shareFolder';
+
+import Login from './pages/login';
 
 import 'moment/locale/pt-br';
 import './App.css';
@@ -17,9 +21,12 @@ const App = () => {
     <ConfigProvider locale = {ptBR}>
       <BrowserRouter>
         <Switch>
-          <Route path = "/home" exact component = { Home } />
-          
-          <Route path = "/*" component = { Home } />
+          <Route path = "/myFolder" exact component = { MyFolder } />
+          <Route path = "/globalFolder" exact component = { GlobalFolder } />
+          <Route path = "/shareWithMe" exact component = { ShareFolder } />
+          <Route path = "/" exact component = { Login } />
+
+          <Route path = "/*" component = { GlobalFolder } />
         </Switch>
       </BrowserRouter>
     </ConfigProvider>

@@ -7,12 +7,12 @@ import './style.css';
 
 const { Text } = Typography;
 
-const Home = props => {
+const shareFolder = props => {
   return (
-    <MainLayout page = "myFolder" loading = {false}>
+    <MainLayout page = "shareWithMe" loading = {false}>
       <Text>oioio</Text>
     </MainLayout>
   );
 };
 
-export default Home;
+export default shareFolder;

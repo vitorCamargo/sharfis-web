@@ -15,7 +15,7 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: {
-      '@primary-color': '#00AD45',
+      '@primary-color': '#5352ED',
       '@font-family': '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
       '@code-family': '"Open Sans", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
       '@text-color': '#2D2E2E',
