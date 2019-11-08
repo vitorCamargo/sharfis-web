@@ -13,6 +13,15 @@ export const error = (err) => {
   else errGeneral();
 }
 
+export const warning = (id) => {
+  if(id === 1) {
+    notification.warning({
+      message: 'AVISO',
+      description: 'Parece que você não está logado, para utilizar todos os nossos serviços, loga ae 👻.'
+    });
+  }
+}
+
 const err503 = () => {
   notification.error({
     message: 'ERRO 503',

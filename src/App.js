@@ -10,6 +10,8 @@ import GlobalFolder from './pages/globalFolder';
 import ShareFolder from './pages/shareFolder';
 
 import Login from './pages/login';
+import SignUp from './pages/signup';
+import Profile from './pages/profile';
 
 import 'moment/locale/pt-br';
 import './App.css';
@@ -24,7 +26,9 @@ const App = () => {
           <Route path = "/myFolder" exact component = { MyFolder } />
           <Route path = "/globalFolder" exact component = { GlobalFolder } />
           <Route path = "/shareWithMe" exact component = { ShareFolder } />
-          <Route path = "/" exact component = { Login } />
+          <Route path = "/login" exact component = { Login } />
+          <Route path = "/signup" exact component = { SignUp } />
+          <Route path = "/edit/profile" exact component = { Profile } />
 
           <Route path = "/*" component = { GlobalFolder } />
         </Switch>

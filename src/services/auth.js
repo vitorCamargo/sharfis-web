@@ -6,7 +6,7 @@ export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const getName = () => localStorage.getItem(NAME);
 export const getID = () => localStorage.getItem(ID);
 
-export const login = (token, name, superuser, id) => {
+export const login = (token, name, id) => {
   localStorage.setItem(TOKEN_KEY, token);
   localStorage.setItem(NAME, name);
   localStorage.setItem(ID, id);

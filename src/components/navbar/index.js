@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { logout, getID } from '../../services/auth';
-import { error } from '../../services/messages';
+import { warning } from '../../services/messages';
 
 import './style.css';
 
@@ -23,14 +23,16 @@ const NavBar = props => {
   });
   const [affixed, setAffixed] = useState(false);
 
+  console.log('999', getID());
   useEffect(() => {
     if(getID()) {
-      axios.get(`/api/managers/${getID()}`).then(res => {
+      axios.get(`/api/users/${getID()}`).then(res => {
         setUser(res.data);
       }).catch(err => {
-        setNav('/');
-        error(err);
+        warning(1);
       });
+    } else {
+      warning(1);
     }
   }, []);
 
@@ -52,7 +54,7 @@ const NavBar = props => {
         <Header className = { !affixed ? 'haccoon-header' : 'haccoon-header-affixed' }>
           <Row className = "header-content">
             <Link to = "/home">
-              <img style = {{ height: affixed ? 45 : 55 }} src = {logo} alt = "Logo Rio do Campo Limpo" />
+              <img style = {{ height: affixed ? 45 : 55 }} src = {logo} alt = "Logo Sharfis" />
             </Link>
 
             <Menu className = "header-menu" selectedKeys = {[props.page]} mode = "horizontal">
@@ -80,7 +82,7 @@ const NavBar = props => {
             </Menu>
 
             <Col className = "header-outer-options">
-              { user.name &&
+              { user.name ? (
                 <Popover
                   overlayClassName = "header-popover-card"
                   placement = "bottomRight"
@@ -131,7 +133,12 @@ const NavBar = props => {
                     <Avatar shape = "square" size = { affixed ? 40 : 45 } style = {{ marginLeft: 4 }} src = { user.image } />
                   </span>
                 </Popover>
-              }
+              ) : (
+                <>
+                  <Button type = "primary" onClick = { () => setNav('/login') }> Login </Button>
+                  <Button type = "link" onClick = { () => setNav('/signup') }> Cadastre-se </Button>
+                </>
+              )}
             </Col>
           </Row>
         </Header>

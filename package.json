@@ -24,7 +24,7 @@
     "test:coverage": "npm test -- --coverage"
   },
   "homepage": "https://sharfis.netlify.com",
-  "proxy": "https://sharfis.herokuapp.com/",
+  "proxy": "https://sharfis-api.herokuapp.com/",
   "root": "build/",
   "routes": {
     "/**": "index.html"
