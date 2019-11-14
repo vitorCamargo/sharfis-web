@@ -23,7 +23,6 @@ const NavBar = props => {
   });
   const [affixed, setAffixed] = useState(false);
 
-  console.log('999', getID());
   useEffect(() => {
     if(getID()) {
       axios.get(`/api/users/${getID()}`).then(res => {

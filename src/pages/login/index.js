@@ -29,11 +29,11 @@ const Login = props => {
     setLoading(true);
 
     props.form.validateFields((err, values) => {
-      if (!err) {
+      if(!err) {
         const { email, password } = values;
 
         axios.post('/api/users/login', { email, password }).then(res => {
-          login(res.data.token, res.data.user.name, res.data.user._id);
+          login(res.data.token, res.data.user.name, res.data.user._id, res.data.user.folder);
 
           const hide = message.loading(`Bem-vindo ${res.data.user.name}!! 🤗`, 0);
           setTimeout(hide, 1500);

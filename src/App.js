@@ -24,10 +24,14 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route path = "/myFolder" exact component = { MyFolder } />
+          <Route path = "/myFolder/:id" exact component = { MyFolder } />
+
           <Route path = "/globalFolder" exact component = { GlobalFolder } />
           <Route path = "/shareWithMe" exact component = { ShareFolder } />
+
           <Route path = "/login" exact component = { Login } />
           <Route path = "/signup" exact component = { SignUp } />
+
           <Route path = "/edit/profile" exact component = { Profile } />
 
           <Route path = "/*" component = { GlobalFolder } />

@@ -25,7 +25,7 @@ const SignUp = props => {
   }, []);
 
   const validateToNextPassword = (rule, value, callback) => {
-    if (value && getFieldValue('confirmPassword')) {
+    if(value && getFieldValue('confirmPassword')) {
       validateFields(['confirmPassword'], { force: true });
     }
     callback();
@@ -48,7 +48,7 @@ const SignUp = props => {
         const { email, name, password } = values;
 
         axios.post('/api/users', { email, name, password }).then(res => {
-          login(res.data._id, res.data.name, res.data._id);
+          login(res.data._id, res.data.name, res.data._id, res.data.folder);
 
           const hide = message.loading(`Bem-vindo ${name}!! 🤗`, 0);
           setTimeout(hide, 1500);
