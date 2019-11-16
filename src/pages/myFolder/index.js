@@ -243,7 +243,7 @@ const MyFolder = props => {
       if(!err) {
         const { name } = values;
 
-        axios.post('/api/files', { name, father: currentFile._id, type: 1 }).then(() => {
+        axios.post('/api/files', { name, father: currentFile._id, type: 1, owner: getID() }).then(() => {
           window.location.reload();
         }).catch((err) => {
           error(err);
@@ -306,7 +306,7 @@ const MyFolder = props => {
 
           if(!file.format) file.format = substringsFile.length > 1 ? substringsFile[substringsFile.length - 1] : ' ';
 
-          axios.post('/api/files', { name: res.data.original_filename, father: currentFile._id, type: 2, file }).then(() => {
+          axios.post('/api/files', { name: res.data.original_filename, father: currentFile._id, type: 2, file, owner: getID() }).then(() => {
             const files = filesUploaded.concat(currentPhotoIndex);
 
             setFilesUploaded(files);

@@ -108,19 +108,6 @@ const NavBar = props => {
                         </Menu.Item>
 
                         <Menu.Divider />
-
-                        <Menu.Item key = "configuracoes">
-                          <Link to = "/configuracoes" replace>
-                            <Card.Meta
-                              avatar = {<Icon style = {{ fontSize: 20 }} type = "setting" />}
-                              title = {<Text style = {{ fontSize: 13 }}> Configurações </Text>}
-                              description = {<Text type = "secondary" ellipsis style = {{ width: '100%', fontSize: 11 }}> Gerencie categorias e configure informações do sistema. </Text>}
-                            />
-                            <Icon className = "header-card-right-icon" type = "right" />
-                          </Link>
-                        </Menu.Item>
-
-                        <Menu.Divider />
                       </Menu>
 
                       <Button type = "danger" size = "small" icon = "frown" style = {{ margin: 10 }} onClick = { signout }> Sair </Button>
