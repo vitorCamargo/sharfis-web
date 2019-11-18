@@ -4,6 +4,7 @@ import { ConfigProvider } from 'antd';
 
 import ptBR from 'antd/lib/locale-provider/pt_BR';
 import moment from 'moment';
+import axios from 'axios';
 
 import MyFolder from './pages/myFolder';
 import GlobalFolder from './pages/globalFolder';
@@ -17,6 +18,8 @@ import 'moment/locale/pt-br';
 import './App.css';
 
 moment.locale('pt-BR');
+
+axios.defaults.baseURL = 'https://sharfis-api.herokuapp.com/';
 
 const App = () => {
   return (
