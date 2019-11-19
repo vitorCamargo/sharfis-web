@@ -30,6 +30,7 @@ const App = () => {
           <Route path = "/myFolder/:id" exact component = { MyFolder } />
 
           <Route path = "/globalFolder" exact component = { GlobalFolder } />
+          <Route path = "/globalFolder/:id" exact component = { GlobalFolder } />
 
           <Route path = "/shareWithMe" exact component = { ShareFolder } />
           <Route path = "/shareWithMe/:id" exact component = { ShareFolder } />
