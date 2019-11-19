@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import { getFolder, getID } from '../../services/auth';
+import { getID } from '../../services/auth';
 import { error, success } from '../../services/messages';
 
 import MainLayout from '../../components/layout';
@@ -17,7 +17,7 @@ const { DirectoryTree, TreeNode } = Tree;
 const { Paragraph } = Typography;
 
 const GlobalFolder = props => {
-  const { getFieldDecorator, validateFields, setFieldsValue } = props.form;
+  const { getFieldDecorator, validateFields } = props.form;
 
   const [loadingPage, setLoadingPage] = useState(true);
   const [nav, setNav] = useState('');
@@ -77,10 +77,10 @@ const GlobalFolder = props => {
   useEffect(() => {
     resetState();
     axios.get('/api/files/global').then(res => {
-      const gloalIdent = res.data._id
+      const gloalIdent = res.data._id;
       setGlobalID(gloalIdent)
       const fileID = props.match.params.id || gloalIdent;
-      console.log("fileID", fileID)
+
       axios.get('/api/files').then(res => {
         const files = res.data;
         const filesID = files.map(e => e._id);
@@ -135,7 +135,6 @@ const GlobalFolder = props => {
 
         setLoadingPage(false);
       }).catch((err) => {
-        console.log("deu erro aqui", err)
         error(err);
         setLoadingPage(false);
       });

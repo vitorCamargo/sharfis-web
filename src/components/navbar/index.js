@@ -5,7 +5,6 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { logout, getID } from '../../services/auth';
-import { warning } from '../../services/messages';
 
 import './style.css';
 
@@ -27,11 +26,7 @@ const NavBar = props => {
     if(getID()) {
       axios.get(`/api/users/${getID()}`).then(res => {
         setUser(res.data);
-      }).catch(err => {
-        warning(1);
       });
-    } else {
-      warning(1);
     }
   }, []);
 
