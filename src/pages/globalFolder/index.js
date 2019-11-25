@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Breadcrumb, Tree, Typography, Spin, Modal, Menu, Dropdown, Upload, Row, Col, Table, Input, Button, Divider, Icon, Form, Popover, message, Select } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -586,4 +586,4 @@ const GlobalFolder = props => {
 };
 
 const WrappedGlobalFolder = Form.create({ name: 'GlobalFolder' })(GlobalFolder);
-export default WrappedGlobalFolder;
+export default withRouter(WrappedGlobalFolder);
