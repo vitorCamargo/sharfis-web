@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Breadcrumb, Tree, Typography, Spin, Modal, Menu, Dropdown, Upload, Row, Col, Table, Input, Button, Divider, Icon, Form, Popover, message, Select } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -585,4 +585,4 @@ const MyFolder = props => {
 };
 
 const WrappedMyFolder = Form.create({ name: 'myFolder' })(MyFolder);
-export default WrappedMyFolder;
+export default withRouter(WrappedMyFolder);
