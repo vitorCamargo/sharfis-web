@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Row, Breadcrumb, Input, Divider, Button, Icon, Form } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -259,4 +259,4 @@ const ShareFolder = props => {
 };
 
 const WrappedShareFolder = Form.create({ name: 'shareFolder' })(ShareFolder);
-export default WrappedShareFolder;
+export default withRouter(WrappedShareFolder);
