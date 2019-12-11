@@ -37,7 +37,7 @@ The users is going to use the system through a web application using ReactJS. Th
 
 ### Technologies
 
-|  Software  |                                            Used For                                            |  Software  |
+|  Software  |                                            Used For                                            |   Version  |
 |:----------:|:----------------------------------------------------------------------------------------------:|:----------:|
 |   ReactJS  | JavaScript library for building user interfaces.                                               |   16.9.0   |
 | AntDesign  | UI design language and React-based implementation with a set of high-quality React components. |   3.22.0   |
